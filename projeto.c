@@ -4,17 +4,24 @@
 #define TOTAL_FALTAS 36
 
 void exibeMenu();
+
 void cadastraAluno();
+
 void listaAlunos();
+
 void atualizarDados();
+
 void listarAprovados();
+
 void listarReprovadosMedia();
+
 void listarReprovadosFalta();
+
 void removerAluno();
 
 typedef struct {
     int alunos[TOTAL_ALUNOS];
-    int faltas[TOTAL_ALUNOS];
+    int faltas[TOTAL_FALTAS];
     double notas[TOTAL_ALUNOS][4];
 } info_pessoa;
 
@@ -112,12 +119,9 @@ void cadastraAluno() {
                         break;
                     }
                 }
-
                 break;
-
             case 0:
                 break;
-
             default:
                 printf("Operação invalida!\n");
         }
@@ -230,31 +234,31 @@ void listarAprovados() {
     double media = 0;
     for (int i = 0; i < TOTAL_ALUNOS; ++i) {
         // Analisa se o vetor está vazio.
-         if (info.alunos[i] != '\O') {
-             // Fazemos o somatório das notas.
-             for (int j = 0; j < 4; ++j) {
-                 media += info.notas[i][j];
-             }
-             // Armazenamos a média.
-             media /= 4;
+        if (info.alunos[i] != '\O') {
+            // Fazemos o somatório das notas.
+            for (int j = 0; j < 4; ++j) {
+                media += info.notas[i][j];
+            }
+            // Armazenamos a média.
+            media /= 4;
 
-             // Armazena o total de faltas.
-             faltas = info.faltas[i];
+            // Armazena o total de faltas.
+            faltas = info.faltas[i];
 
-             // Cálculo de frequência do aluno.
-             faltas = ((36 - faltas) / 36) * 100;
+            // Cálculo de frequência do aluno.
+            faltas = ((36 - faltas) / 36) * 100;
 
-             // Condição de aprovação.
-             if (media >= 7 && faltas >= 60) {
-                 printf("\nMatrícula: %d\n", info.alunos[i]);
-                 printf("Faltas: %d\n", info.faltas[i]);
-                 printf("Frequência: %.1lf%\n", faltas);
-                 printf("Média: %.1lf\n", media);
-                 printf("Situação: Aprovado\n");
-                 // Resetamos a variável média.
-                 media = 0;
-             }
-         }
+            // Condição de aprovação.
+            if (media >= 7 && faltas >= 60) {
+                printf("\nMatrícula: %d\n", info.alunos[i]);
+                printf("Faltas: %d\n", info.faltas[i]);
+                printf("Frequência: %.1lf%\n", faltas);
+                printf("Média: %.1lf\n", media);
+                printf("Situação: Aprovado\n");
+                // Resetamos a variável média.
+                media = 0;
+            }
+        }
     }
 }
 
