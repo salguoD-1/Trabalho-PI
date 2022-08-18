@@ -8,6 +8,8 @@ void cadastraAluno();
 void listaAlunos();
 void atualizarDados();
 void listarAprovados();
+void listarReprovadosMedia();
+void listarReprovadosFalta();
 
 typedef struct {
     int alunos[TOTAL_ALUNOS];
@@ -49,6 +51,14 @@ void exibeMenu() {
 
             case 5:
                 listarAprovados();
+                break;
+
+            case 6:
+                listarReprovadosMedia();
+                break;
+
+            case 7:
+                listarReprovadosFalta();
                 break;
 
             default:
@@ -240,5 +250,47 @@ void listarAprovados() {
                  media = 0;
              }
          }
+    }
+}
+
+void listarReprovadosMedia() {
+    double media = 0;
+    for (int i = 0; i < TOTAL_ALUNOS; ++i) {
+        // Analisa se o vetor alunos é nulo.
+        if (info.alunos[i] != '\0') {
+            for (int j = 0; j < 4; ++j) {
+                media += info.notas[i][j];
+            }
+            // Armazena a média final.
+            media /= 4;
+
+            // Condição de reprovação.
+            if (media < 7) {
+                printf("\nMatrícula: %d\n", info.alunos[i]);
+                printf("Média: %.1lf\n", media);
+                printf("Situação: Reprovado por média\n");
+                media = 0;
+            }
+        }
+    }
+}
+
+void listarReprovadosFalta() {
+    double faltas;
+
+    for (int i = 0; i < TOTAL_ALUNOS; ++i) {
+        // Analisa se o vetor é nulo(vazio).
+        if (info.alunos[i] != '\0') {
+            // Armazena as faltas.
+            faltas = info.faltas[i];
+            // Calcula a frequência.
+            faltas = ((36 - faltas) / 36) * 100;
+            // Condição de reprovação.
+            if (faltas < 60) {
+                printf("\nMatrícula: %d\n", info.alunos[i]);
+                printf("Frequência: %.1lf%\n", faltas);
+                printf("Situação: Reprovado por faltas\n");
+            }
+        }
     }
 }
