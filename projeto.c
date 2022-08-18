@@ -128,6 +128,59 @@ void cadastraAluno() {
     } while (operacao != 0);
 }
 
+void removerAluno() {
+    int matricula;
+    int opcao;
+    for (int i = 0; i < TOTAL_ALUNOS; ++i) {
+        // Analisamos se o vetor é nulo(vazio).
+        if (info.alunos[i] != '\0') {
+            // Executamos o código ao menos uma vez.
+            printf("\nExibindo todas as matrículas\n");
+            // Exibe todas as matrículas no sistema.
+            listaAlunos();
+            // Solicita uma opção.
+            printf("\nDeseja excluir alguma das matrículas?(1 - Sim / 0 - Não): ");
+            scanf("%d", &opcao);
+
+            // Caso de saída.
+            if (opcao == 0) {
+                break;
+            }
+
+            // A depender da opção realizamos uma operação.
+            switch (opcao) {
+                case 1:
+                    printf("\nDigite a matrícula a ser removida: ");
+                    scanf("%d", &matricula);
+
+                    // Analisa se a matrícula faz parte do vetor.
+                    if (info.alunos[i] == matricula) {
+                        // Define o valor da matrícula como nulo(vazio)
+                        info.alunos[i] = '\0';
+                        // Define o valor das faltas como nulo(vazio)
+                        info.faltas[i] = '\0';
+                        // Define o valor das notas como nulo(vazio)
+                        for (int j = 0; j < 4; ++j) {
+                            info.notas[i][j] = '\0';
+                        }
+                        // Caso base onde o vetor está vazio.
+                    } else if (info.alunos[i] == '\0') {
+                        printf("Vetor vazio!\n");
+                        // Caso base onde a matrícula não faz parte do vetor.
+                        break;
+                    } else {
+                        printf("Matrícula não encontrada!\n");
+                        break;
+                    }
+                    break;
+
+                default:
+                    printf("Opção inválida!\n");
+            }
+        }
+    }
+}
+
 void listaAlunos() {
     for (int i = 0; i < TOTAL_ALUNOS; ++i) {
         if (info.alunos[i] != '\0') {
@@ -166,10 +219,7 @@ void atualizarDados() {
                         printf("Digite o total de faltas para realizar a alteração: ");
                         scanf("%d", &faltas);
                         info.faltas[i] = faltas;
-                    } else {
-                        printf("Matrícula não existe!\n");
                     }
-                    break;
                 }
                 break;
 
@@ -219,10 +269,7 @@ void atualizarDados() {
                                 printf("Opção inválida!\n");
                                 break;
                         }
-                    } else {
-                        printf("Matrícula não existe!\n");
                     }
-                    break;
                 }
                 break;
         }
@@ -304,53 +351,3 @@ void listarReprovadosFalta() {
     }
 }
 
-void removerAluno() {
-    int matricula;
-    int opcao;
-    for (int i = 0; i < TOTAL_ALUNOS; ++i) {
-        // Analisamos se o vetor é nulo(vazio).
-        if (info.alunos[i] != '\0') {
-            // Executamos o código ao menos uma vez.
-            printf("\nExibindo todas as matrículas\n");
-            // Exibe todas as matrículas no sistema.
-            listaAlunos();
-            // Solicita uma opção.
-            printf("\nDeseja excluir alguma das matrículas?(1 - Sim / 0 - Não): ");
-            scanf("%d", &opcao);
-
-            // Caso de saída.
-            if (opcao == 0) {
-                break;
-            }
-
-            // A depender da opção realizamos uma operação.
-            switch (opcao) {
-                case 1:
-                    printf("\nDigite a matrícula a ser removida: ");
-                    scanf("%d", &matricula);
-
-                    // Analisa se a matrícula faz parte do vetor.
-                    if (info.alunos[i] == matricula) {
-                        // Define o valor da matrícula como nulo(vazio)
-                        info.alunos[i] = '\0';
-                        // Define o valor das faltas como nulo(vazio)
-                        info.faltas[i] = '\0';
-                        // Define o valor das notas como nulo(vazio)
-                        for (int j = 0; j < 4; ++j) {
-                            info.notas[i][j] = '\0';
-                        }
-                        // Caso base onde o vetor está vazio.
-                    } else if (info.alunos[i] == '\0') {
-                        printf("Vetor vazio!\n");
-                        // Caso base onde a matrícula não faz parte do vetor.
-                    } else {
-                        printf("Matrícula não encontrada!\n");
-                    }
-                    break;
-
-                default:
-                    printf("Opção inválida!\n");
-            }
-        }
-    }
-}
