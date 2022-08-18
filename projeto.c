@@ -1,3 +1,6 @@
+// Aluno: DOUGLAS CUNHA DE JESUS
+// Matrícula: 202200059722
+
 #include "stdio.h"
 
 // Valores pré-definidos.
@@ -323,7 +326,7 @@ void listarAprovados() {
 }
 
 void listarReprovadosMedia() {
-    double media = 0;
+    double media;
     for (int i = 0; i < TOTAL_ALUNOS; ++i) {
         // Analisa se o vetor alunos é nulo.
         if (info.alunos[i] != '\0') {
@@ -338,7 +341,6 @@ void listarReprovadosMedia() {
                 printf("\nMatrícula: %d\n", info.alunos[i]);
                 printf("Média: %.1lf\n", media);
                 printf("Situação: Reprovado por média\n");
-                media = 0;
             }
         }
     }
