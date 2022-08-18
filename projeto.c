@@ -214,31 +214,31 @@ void listarAprovados() {
     double faltas;
     double media = 0;
     for (int i = 0; i < TOTAL_ALUNOS; ++i) {
-        // Fazemos o somatório das notas.
-        for (int j = 0; j < 4; ++j) {
-            media += info.notas[i][j];
-        }
-        // Armazenamos a média.
-        media /= 4;
+        // Analisa se o vetor está vazio.
+         if (info.alunos[i] != '\O') {
+             // Fazemos o somatório das notas.
+             for (int j = 0; j < 4; ++j) {
+                 media += info.notas[i][j];
+             }
+             // Armazenamos a média.
+             media /= 4;
 
-        // Armazena o total de faltas.
-        faltas = info.faltas[i];
+             // Armazena o total de faltas.
+             faltas = info.faltas[i];
 
-        // Cálculo de frequência do aluno.
-        faltas = ((36 - faltas) / 36) * 100;
+             // Cálculo de frequência do aluno.
+             faltas = ((36 - faltas) / 36) * 100;
 
-        // Condição de aprovação.
-        if (media >= 7 && faltas >= 60) {
-            printf("\nMatrícula: %d\n", info.alunos[i]);
-            printf("Faltas: %d\n", info.faltas[i]);
-            printf("Frequência: %.1lf%\n", faltas);
-            printf("Média: %.1lf\n", media);
-            printf("Situação: Aprovado\n");
-            // Resetamos a variável média.
-            media = 0;
-            // Caso o aluno não atinga a condição acima não exibirá nada.
-        } else {
-            break;
-        }
+             // Condição de aprovação.
+             if (media >= 7 && faltas >= 60) {
+                 printf("\nMatrícula: %d\n", info.alunos[i]);
+                 printf("Faltas: %d\n", info.faltas[i]);
+                 printf("Frequência: %.1lf%\n", faltas);
+                 printf("Média: %.1lf\n", media);
+                 printf("Situação: Aprovado\n");
+                 // Resetamos a variável média.
+                 media = 0;
+             }
+         }
     }
 }
