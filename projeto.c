@@ -1,8 +1,10 @@
 #include "stdio.h"
 
-#define TOTAL_ALUNOS 5
+// Valores pré-definidos.
+#define TOTAL_ALUNOS 30
 #define TOTAL_FALTAS 36
 
+// Lista de funções pré-definidas.
 void exibeMenu();
 
 void cadastraAluno();
@@ -19,20 +21,23 @@ void listarReprovadosFalta();
 
 void removerAluno();
 
+// Registro que permite trabalhar com varíveis de tipos diferentes.
 typedef struct {
     int alunos[TOTAL_ALUNOS];
     int faltas[TOTAL_FALTAS];
     double notas[TOTAL_ALUNOS][4];
 } info_pessoa;
 
-// Criamos um objeto do tipo info.
+// Criamos uma variavel do tipo info_pessoa.
 info_pessoa info;
 
+// Função main executa o programa.
 int main() {
+    // Realiza a chamada do menu.
     exibeMenu();
     return 0;
 }
-
+// Exibe o menu de apções disponíveis.
 void exibeMenu() {
     int operacao;
 
@@ -81,53 +86,50 @@ void exibeMenu() {
 }
 
 void cadastraAluno() {
-    int i = 0;
+//    int i = 0;
     int matricula;
     int faltas;
     double notas;
     int operacao;
 
     do {
-        printf("Deseja adicionar uma matrícula?(1 - Sim / 0 - Não): ");
+        printf("\nDeseja adicionar uma matrícula?(1 - Sim / 0 - Não): ");
         scanf("%d", &operacao);
 
-        switch (operacao) {
-            case 1:
-                printf("Digite sua matrícula(Ex: 20220XX): ");
-                scanf("%d", &matricula);
+        if (operacao == 0) {
+            break;
+        } else {
+            printf("Digite sua matrícula(Ex: 20220XX): ");
+            scanf("%d", &matricula);
 
-                for (int j = 0; j < TOTAL_ALUNOS; ++j) {
-                    if (matricula == info.alunos[j]) {
-                        printf("Matrícula já existente!\n");
-                        break;
-                    } else if (i > 4) {
-                        printf("Não é possível cadastrar mais alunos, limite máximo atingido!\n");
-                        break;
-                    } else {
-                        // Adiciona a matrícula.
-                        info.alunos[i] = matricula;
+            for (int i = 0; i < TOTAL_ALUNOS; ++i) {
+                if (info.alunos[i] == matricula) {
+                    printf("\nMatrícula ja existente!");
+                    break;
+                } else if (i > 29) {
+                    printf("Total máximo de matrículas atingido!\n");
+                    break;
+                } else if (info.alunos[i] != '\0') {
+                    continue;
+                } else {
+                    // Armazena a matrícula.
+                    info.alunos[i] = matricula;
+                    // Solicita as notas e as armazena.
+                    printf("Digite a quantidade de faltas: ");
+                    scanf("%d", &faltas);
+                    info.faltas[i] = faltas;
 
-                        // Solicita a quantidade de faltas e adiciona ao vetor.
-                        printf("Digite a quantidade de faltas: ");
-                        scanf("%d", &faltas);
-                        info.faltas[i] = faltas;
-
-                        // Solicita a quantidade de notas e adiciona a matriz.
-                        for (int k = 0; k < 4; ++k) {
-                            printf("Digite a nota %d: ", k + 1);
-                            scanf("%lf", &notas);
-                            info.notas[i][k] = notas;
-                        }
-                        i++;
-                        break;
+                    // Percorre a matriz e solicita/armazena as notas.
+                    for (int j = 0; j < 4; ++j) {
+                        printf("Digite a nota %d: ", j + 1);
+                        scanf("%lf", &notas);
+                        info.notas[i][j] = notas;
                     }
+                    break;
                 }
-                break;
-            case 0:
-                break;
-            default:
-                printf("Operação invalida!\n");
+            }
         }
+
     } while (operacao != 0);
 }
 
@@ -183,6 +185,7 @@ void removerAluno() {
                     break;
                 default:
                     printf("Operação inválida!\n");
+                    break;
             }
         }
     } while (opcao != 0);
