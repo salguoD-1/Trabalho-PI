@@ -53,6 +53,8 @@ void exibeMenu() {
         scanf("%d", &operacao);
 
         switch (operacao) {
+            case 0:
+                break;
             case 1:
                 cadastraAluno();
                 break;
@@ -89,7 +91,6 @@ void exibeMenu() {
 }
 
 void cadastraAluno() {
-//    int i = 0;
     int matricula;
     int faltas;
     double notas;
@@ -109,6 +110,7 @@ void cadastraAluno() {
                 if (info.alunos[i] == matricula) {
                     printf("\nMatrícula ja existente!");
                     break;
+                    // Analisa se o total de matrículas excede o total permitido.
                 } else if (i > 29) {
                     printf("Total máximo de matrículas atingido!\n");
                     break;
@@ -155,40 +157,26 @@ void removerAluno() {
             // Solicita a matrícula.
             printf("\nDigite a matrícula a ser removida: ");
             scanf("%d", &matricula);
-            switch (opcao) {
-                case 1:
-                    for (int i = 0; i < TOTAL_ALUNOS; ++i) {
-                        // Analisa se a matrícula faz parte do vetor.
-                        if (info.alunos[i] == matricula) {
-                            // Define o valor da matrícula como nulo(vazio)
-                            info.alunos[i] = '\0';
-                            // Define o valor das faltas como nulo(vazio)
-                            info.faltas[i] = '\0';
-                            // Define o valor das notas como nulo(vazio)
-                            for (int j = 0; j < 4; ++j) {
-                                info.notas[i][j] = '\0';
-                            }
-                            // Caso base onde o vetor está vazio.
-                            break;
-                        } else if (info.alunos[i] == '\0') {
-                            printf("Vetor vazio!\n");
-                            // Caso base onde a matrícula não faz parte do vetor.
-                            break;
-                        } else if (info.alunos[i] != matricula) {
-                            // Caso a matrícula não seja igual, passamos para a próxima matrícula.
-                            continue;
-                        } else {
-                            // Caso a matrícula não seja encontrada!
-                            printf("Matrícula não encontrada!\n");
-                            break;
-                        }
+
+            for (int i = 0; i < TOTAL_ALUNOS; ++i) {
+                // Analisa se a matrícula faz parte do vetor.
+                if (info.alunos[i] == matricula) {
+                    // Define o valor da matrícula como nulo(vazio)
+                    info.alunos[i] = '\0';
+                    // Define o valor das faltas como nulo(vazio)
+                    info.faltas[i] = '\0';
+                    // Define o valor das notas como nulo(vazio)
+                    for (int j = 0; j < 4; ++j) {
+                        info.notas[i][j] = '\0';
                     }
+                } else if (info.alunos[i] != matricula) {
+                    // Caso a matrícula não seja igual, passamos para a próxima matrícula.
+                    continue;
+                } else {
+                    // Caso a matrícula não seja encontrada!
+                    printf("Matrícula não encontrada!\n");
                     break;
-                case 0:
-                    break;
-                default:
-                    printf("Operação inválida!\n");
-                    break;
+                }
             }
         }
     } while (opcao != 0);
@@ -196,6 +184,7 @@ void removerAluno() {
 
 void listaAlunos() {
     for (int i = 0; i < TOTAL_ALUNOS; ++i) {
+        // Analisa para ver se o vetor está vazio.
         if (info.alunos[i] != '\0') {
             printf("\nMatrícula: %d\n", info.alunos[i]);
             printf("Faltas: %d\n", info.faltas[i]);
@@ -204,8 +193,8 @@ void listaAlunos() {
                 printf("Nota %d = %.1lf\n", j + 1, info.notas[i][j]);
             }
         } else {
-            // Caso o vetor esteja vazio.
-            break;
+            // Caso o elemento no vetor estiver vazio, pula para a próxima matrícula.
+            continue;
         }
     }
 }
