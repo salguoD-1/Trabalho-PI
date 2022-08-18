@@ -6,6 +6,7 @@
 void exibeMenu();
 void cadastraAluno();
 void listaAlunos();
+void atualizarDados();
 
 typedef struct {
     int alunos[TOTAL_ALUNOS];
@@ -35,6 +36,10 @@ void exibeMenu() {
         switch (operacao) {
             case 1:
                 cadastraAluno();
+                break;
+
+            case 3:
+                atualizarDados();
                 break;
 
             case 4:
@@ -110,4 +115,92 @@ void listaAlunos() {
             }
         }
     }
+}
+
+void atualizarDados() {
+    int matricula;
+    int opcao;
+    int faltas;
+    int qlNota;
+    double notas;
+
+    do {
+        printf("Digite uma opção(1 - Alterar as faltas / 2 - Alterar as notas / 0 - Sair): ");
+        scanf("%d", &opcao);
+
+        if (opcao == 0) {
+            break;
+        }
+
+        printf("Digite a sua matrícula(Ex: 20220XX): ");
+        scanf("%d", &matricula);
+
+        switch (opcao) {
+            case 1:
+                for (int i = 0; i < TOTAL_ALUNOS; ++i) {
+                    if (info.alunos[i] == matricula) {
+                        printf("Digite o total de faltas para realizar a alteração: ");
+                        scanf("%d", &faltas);
+                        info.faltas[i] = faltas;
+                    } else {
+                        printf("Matrícula não existe!\n");
+                    }
+                    break;
+                }
+                break;
+
+            case 2:
+                for (int i = 0; i < TOTAL_ALUNOS; ++i) {
+                    if (info.alunos[i] == matricula) {
+                        printf("Qual nota você deseja alterar?(1 - Primeira nota / 2 - Segunda nota / 3 - Terceira nota / 4 - Quarta nota / 0 - Todas as notas\n: ");
+                        scanf("%d", &qlNota);
+
+                        switch (qlNota) {
+                            case 1:
+                                for (int j = 0; j < 1; ++j) {
+                                    printf("Digite a primeira nota: ");
+                                    scanf("%lf", &notas);
+                                    info.notas[i][qlNota - 1] = notas;
+                                }
+                                break;
+                            case 2:
+                                for (int j = 1; j < 2; ++j) {
+                                    printf("Digite a segunda nota: ");
+                                    scanf("%lf", &notas);
+                                    info.notas[i][qlNota - 1] = notas;
+                                }
+                                break;
+                            case 3:
+                                for (int j = 2; j < 3; ++j) {
+                                    printf("Digite a terceira nota: ");
+                                    scanf("%lf", &notas);
+                                    info.notas[i][qlNota - 1] = notas;
+                                }
+                                break;
+                            case 4:
+                                for (int j = 3; j < 4; ++j) {
+                                    printf("Digite a quarta nota: ");
+                                    scanf("%lf", &notas);
+                                    info.notas[i][qlNota - 1] = notas;
+                                }
+                                break;
+                            case 0:
+                                for (int j = 0; j < 4; ++j) {
+                                    printf("Digite a nota %d: ", j + 1);
+                                    scanf("%lf", &notas);
+                                    info.notas[i][j] = notas;
+                                }
+                                break;
+                            default:
+                                printf("Opção inválida!\n");
+                                break;
+                        }
+                    } else {
+                        printf("Matrícula não existe!\n");
+                    }
+                    break;
+                }
+                break;
+        }
+    } while (opcao != 0);
 }
