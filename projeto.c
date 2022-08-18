@@ -1,6 +1,6 @@
 #include "stdio.h"
 
-#define TOTAL_ALUNOS 30
+#define TOTAL_ALUNOS 5
 #define TOTAL_FALTAS 36
 
 void exibeMenu();
@@ -99,6 +99,9 @@ void cadastraAluno() {
                 for (int j = 0; j < TOTAL_ALUNOS; ++j) {
                     if (matricula == info.alunos[j]) {
                         printf("Matrícula já existente!\n");
+                        break;
+                    } else if (i > 4) {
+                        printf("Não é possível cadastrar mais alunos, limite máximo atingido!\n");
                         break;
                     } else {
                         // Adiciona a matrícula.
