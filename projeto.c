@@ -90,6 +90,7 @@ void exibeMenu() {
     } while (operacao != 0);
 }
 
+// Realiza o cadastro do aluno.
 void cadastraAluno() {
     int matricula;
     int faltas;
@@ -138,8 +139,7 @@ void cadastraAluno() {
     } while (operacao != 0);
 }
 
-
-
+// Remove uma determinada matrícula.
 void removerAluno() {
     int matricula;
     int opcao;
@@ -182,23 +182,7 @@ void removerAluno() {
     } while (opcao != 0);
 }
 
-void listaAlunos() {
-    for (int i = 0; i < TOTAL_ALUNOS; ++i) {
-        // Analisa para ver se o vetor está vazio.
-        if (info.alunos[i] != '\0') {
-            printf("\nMatrícula: %d\n", info.alunos[i]);
-            printf("Faltas: %d\n", info.faltas[i]);
-
-            for (int j = 0; j < 4; ++j) {
-                printf("Nota %d = %.1lf\n", j + 1, info.notas[i][j]);
-            }
-        } else {
-            // Caso o elemento no vetor estiver vazio, pula para a próxima matrícula.
-            continue;
-        }
-    }
-}
-
+// Atualiza dados do aluno.
 void atualizarDados() {
     int matricula;
     int opcao;
@@ -281,6 +265,25 @@ void atualizarDados() {
     } while (opcao != 0);
 }
 
+// Lista todas as matrículas existentes.
+void listaAlunos() {
+    for (int i = 0; i < TOTAL_ALUNOS; ++i) {
+        // Analisa para ver se o vetor está vazio.
+        if (info.alunos[i] != '\0') {
+            printf("\nMatrícula: %d\n", info.alunos[i]);
+            printf("Faltas: %d\n", info.faltas[i]);
+
+            for (int j = 0; j < 4; ++j) {
+                printf("Nota %d = %.1lf\n", j + 1, info.notas[i][j]);
+            }
+        } else {
+            // Caso o elemento no vetor estiver vazio, pula para a próxima matrícula.
+            continue;
+        }
+    }
+}
+
+// Lista todos os aprovados.
 void listarAprovados() {
     double faltas;
     double media = 0;
@@ -314,6 +317,7 @@ void listarAprovados() {
     }
 }
 
+// Lista todos os reprovados por média.
 void listarReprovadosMedia() {
     double media;
     for (int i = 0; i < TOTAL_ALUNOS; ++i) {
@@ -335,6 +339,7 @@ void listarReprovadosMedia() {
     }
 }
 
+// Lista todos os reprovados por falta.
 void listarReprovadosFalta() {
     double faltas;
 
