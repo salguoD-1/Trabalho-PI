@@ -4,7 +4,7 @@
 #include "stdio.h"
 
 // Valores pré-definidos.
-#define TOTAL_ALUNOS 2
+#define TOTAL_ALUNOS 30
 #define TOTAL_FALTAS 36
 // Contador de matrículas a nível global.
 int count = 0;
@@ -193,7 +193,6 @@ void removerAluno() {
             // Flag que é responsável por exibir se uma matrícula não foi encontrada.
             if (flag) {
                 printf("Matrícula não encontrada!\n");
-                break;
             }
         }
     } while (opcao != 0);
@@ -306,7 +305,7 @@ void listarAprovados() {
     double media = 0;
     for (int i = 0; i < TOTAL_ALUNOS; ++i) {
         // Analisa se o vetor está vazio.
-        if (info.alunos[i] != '\O') {
+        if (info.alunos[i] != '\0') {
             // Fazemos o somatório das notas.
             for (int j = 0; j < 4; ++j) {
                 media += info.notas[i][j];
