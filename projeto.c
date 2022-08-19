@@ -179,16 +179,18 @@ void removerAluno() {
                     }
                     // Decrementamos o contador para poder ceder uma vaga de matrícula no vetor.
                     count--;
+                    // Flag responsável por setar false caso a matrícula exista.
                     flag = 0;
                     break;
                 }
-                // Caso a matrícula não seja encontrada!
+                // Caso a matrícula não seja igual, passamos para a próxima matrícula.
                 else if (info.alunos[i] != matricula) {
-                    // Caso a matrícula não seja igual, passamos para a próxima matrícula.
+                    // Flag responsável por setar true caso a matrícula não exista.
                     flag = 1;
                     continue;
                 }
             }
+            // Flag que é responsável por exibir se uma matrícula não foi encontrada.
             if (flag) {
                 printf("Matrícula não encontrada!\n");
                 break;
