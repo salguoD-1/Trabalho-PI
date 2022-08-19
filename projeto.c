@@ -4,8 +4,10 @@
 #include "stdio.h"
 
 // Valores pré-definidos.
-#define TOTAL_ALUNOS 30
+#define TOTAL_ALUNOS 2
 #define TOTAL_FALTAS 36
+// Contador de matrículas a nível global.
+int count = 0;
 
 // Lista de funções pré-definidas.
 void exibeMenu();
@@ -107,15 +109,19 @@ void cadastraAluno() {
             printf("Digite sua matrícula(Ex: 20220XX): ");
             scanf("%d", &matricula);
 
+            if (count >= TOTAL_ALUNOS) {
+                printf("Número máximo de matrículas atingido!\n");
+                break;
+            }
+
             for (int i = 0; i < TOTAL_ALUNOS; ++i) {
                 if (info.alunos[i] == matricula) {
                     printf("\nMatrícula ja existente!");
                     break;
                     // Analisa se o total de matrículas excede o total permitido.
-                } else if (i > 29) {
-                    printf("Total máximo de matrículas atingido!\n");
-                    break;
-                } else if (info.alunos[i] != '\0') {
+                }
+                if (info.alunos[i] != '\0') {
+                    // Pulamos para o próximo elemento caso o índice não seja nulo.
                     continue;
                 } else {
                     // Armazena a matrícula.
@@ -131,6 +137,7 @@ void cadastraAluno() {
                         scanf("%lf", &notas);
                         info.notas[i][j] = notas;
                     }
+                    count++;
                     break;
                 }
             }
@@ -143,6 +150,7 @@ void cadastraAluno() {
 void removerAluno() {
     int matricula;
     int opcao;
+    int flag = 0;
     do {
         printf("\nExibindo todas as matrículas\n");
         // Exibe todas as matrículas no sistema.
@@ -169,14 +177,21 @@ void removerAluno() {
                     for (int j = 0; j < 4; ++j) {
                         info.notas[i][j] = '\0';
                     }
-                } else if (info.alunos[i] != matricula) {
-                    // Caso a matrícula não seja igual, passamos para a próxima matrícula.
-                    continue;
-                } else {
-                    // Caso a matrícula não seja encontrada!
-                    printf("Matrícula não encontrada!\n");
+                    // Decrementamos o contador para poder ceder uma vaga de matrícula no vetor.
+                    count--;
+                    flag = 0;
                     break;
                 }
+                // Caso a matrícula não seja encontrada!
+                else if (info.alunos[i] != matricula) {
+                    // Caso a matrícula não seja igual, passamos para a próxima matrícula.
+                    flag = 1;
+                    continue;
+                }
+            }
+            if (flag) {
+                printf("Matrícula não encontrada!\n");
+                break;
             }
         }
     } while (opcao != 0);
