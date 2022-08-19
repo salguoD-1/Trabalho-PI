@@ -26,7 +26,7 @@ void listarReprovadosFalta();
 
 void removerAluno();
 
-// Registro que permite trabalhar com varíveis de tipos diferentes.
+// Registro que permite trabalhar com variáveis de tipos diferentes.
 typedef struct {
     int alunos[TOTAL_ALUNOS];
     int faltas[TOTAL_FALTAS];
