@@ -2,6 +2,7 @@
 // Matrícula: 202200059722
 
 #include "stdio.h"
+#include "string.h"
 
 // Valores pré-definidos.
 #define TOTAL_ALUNOS 30
@@ -31,6 +32,7 @@ typedef struct {
     int alunos[TOTAL_ALUNOS];
     int faltas[TOTAL_FALTAS];
     double notas[TOTAL_ALUNOS][4];
+    char nome[][TOTAL_ALUNOS];
 } info_pessoa;
 
 // Criamos uma variavel do tipo info_pessoa.
@@ -126,7 +128,14 @@ void cadastraAluno() {
                 } else {
                     // Armazena a matrícula.
                     info.alunos[i] = matricula;
-                    // Solicita as notas e as armazena.
+                    // Solicita o nome do aluno.
+                    printf("Digite o seu nome completo: ");
+                    // Limpa o buffer do teclado.
+                    setbuf(stdin, NULL);
+                    // A função fgets recebe uma string, analisa o tamanho da string e armazena o resultado.
+                    fgets(info.nome[i], sizeof(info.nome[i]), stdin);
+
+                    // Solicita as faltas e as armazena.
                     printf("Digite a quantidade de faltas: ");
                     scanf("%d", &faltas);
                     info.faltas[i] = faltas;
@@ -171,6 +180,8 @@ void removerAluno() {
                 if (info.alunos[i] == matricula) {
                     // Define o valor da matrícula como nulo(vazio)
                     info.alunos[i] = '\0';
+                    // A função strcpy altera o valor da string nome.
+                    strcpy(info.nome[i], "\0");
                     // Define o valor das faltas como nulo(vazio)
                     info.faltas[i] = '\0';
                     // Define o valor das notas como nulo(vazio)
@@ -287,6 +298,7 @@ void listaAlunos() {
         // Analisa para ver se o vetor está vazio.
         if (info.alunos[i] != '\0') {
             printf("\nMatrícula: %d\n", info.alunos[i]);
+            printf("Nome: %s", info.nome[i]);
             printf("Faltas: %d\n", info.faltas[i]);
 
             for (int j = 0; j < 4; ++j) {
@@ -322,6 +334,7 @@ void listarAprovados() {
             // Condição de aprovação.
             if (media >= 7 && faltas >= 60) {
                 printf("\nMatrícula: %d\n", info.alunos[i]);
+                printf("Nome: %s", info.nome[i]);
                 printf("Faltas: %d\n", info.faltas[i]);
                 printf("Frequência: %.1lf%\n", faltas);
                 printf("Média: %.1lf\n", media);
@@ -348,6 +361,7 @@ void listarReprovadosMedia() {
             // Condição de reprovação.
             if (media < 7) {
                 printf("\nMatrícula: %d\n", info.alunos[i]);
+                printf("Nome: %s", info.nome[i]);
                 printf("Média: %.1lf\n", media);
                 printf("Situação: Reprovado por média\n");
             }
@@ -369,6 +383,7 @@ void listarReprovadosFalta() {
             // Condição de reprovação.
             if (faltas < 60) {
                 printf("\nMatrícula: %d\n", info.alunos[i]);
+                printf("Nome: %s", info.nome[i]);
                 printf("Frequência: %.1lf%\n", faltas);
                 printf("Situação: Reprovado por faltas\n");
             }

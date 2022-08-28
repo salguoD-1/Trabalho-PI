@@ -31,7 +31,7 @@
 						"gcc_s"
 					]
 				},
-				"path" : "/usr/bin/cc",
+				"path" : "/usr/sbin/cc",
 				"version" : "12.1.1"
 			},
 			"language" : "C",

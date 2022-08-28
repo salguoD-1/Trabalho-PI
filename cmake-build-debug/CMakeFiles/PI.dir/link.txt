@@ -1,0 +1,1 @@
+/usr/sbin/cc -g CMakeFiles/PI.dir/projeto.c.o -o PI 

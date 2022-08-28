@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/doug/Documents/PI/cmake-build-debug",
-		"source" : "/home/doug/Documents/PI"
+		"build" : "/home/doug/Documents/Trabalho-PI/cmake-build-debug",
+		"source" : "/home/doug/Documents/Trabalho-PI"
 	},
 	"version" : 
 	{
