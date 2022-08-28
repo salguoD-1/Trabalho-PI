@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/doug/Documents/Trabalho-PI/projeto.c" "CMakeFiles/PI.dir/projeto.c.o" "gcc" "CMakeFiles/PI.dir/projeto.c.o.d"
+  "C:/Users/Douglas/Documents/Trabalho-PI/projeto.c" "CMakeFiles/PI.dir/projeto.c.obj" "gcc" "CMakeFiles/PI.dir/projeto.c.obj.d"
   )
 
 # Targets to which this target links.

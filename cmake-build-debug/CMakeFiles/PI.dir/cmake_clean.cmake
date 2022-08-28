@@ -1,8 +1,10 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/PI.dir/projeto.c.o"
-  "CMakeFiles/PI.dir/projeto.c.o.d"
-  "PI"
+  "CMakeFiles/PI.dir/projeto.c.obj"
+  "CMakeFiles/PI.dir/projeto.c.obj.d"
+  "PI.exe"
+  "PI.exe.manifest"
   "PI.pdb"
+  "libPI.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

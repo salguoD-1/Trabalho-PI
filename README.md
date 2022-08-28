@@ -11,7 +11,7 @@ git clone https://github.com/salguoD-1/Trabalho-PI
 ````
 Caso tenha uma chave SSH configurada utilize o seguinte comando
 ````bash
-git@github.com:salguoD-1/Trabalho-PI.git
+git clone git@github.com:salguoD-1/Trabalho-PI.git
 ````
 
 Para executar o código é necessário possuir algum compilador da linguagem C, como é o caso do GCC. Para executar basta digitar o seguinte comando no terminal

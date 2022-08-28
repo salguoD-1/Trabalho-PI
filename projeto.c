@@ -132,8 +132,10 @@ void cadastraAluno() {
                     printf("Digite o seu nome completo: ");
                     // Limpa o buffer do teclado.
                     setbuf(stdin, NULL);
-                    // A função fgets recebe uma string, analisa o tamanho da string e armazena o resultado.
-                    fgets(info.nome[i], sizeof(info.nome[i]), stdin);
+                    /* A função fgets recebe uma string, pré-defini o tamanho do nome como sendo no máximo 100 caracteres. Por fim, a função recebe o valor digitado e armazena na matriz nome.*/
+                    fgets(info.nome[i], 100, stdin);
+                    // Limpa o buffer do teclado.
+                    setbuf(stdin, NULL);
 
                     // Solicita as faltas e as armazena.
                     printf("Digite a quantidade de faltas: ");
