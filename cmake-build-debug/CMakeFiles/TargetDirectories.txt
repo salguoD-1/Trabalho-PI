@@ -1,3 +1,0 @@
-C:/Users/Douglas/Documents/Trabalho-PI/cmake-build-debug/CMakeFiles/PI.dir
-C:/Users/Douglas/Documents/Trabalho-PI/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Douglas/Documents/Trabalho-PI/cmake-build-debug/CMakeFiles/rebuild_cache.dir
