@@ -3,12 +3,14 @@
 
 #include "stdio.h"
 #include "string.h"
+#include "stdlib.h"
 
 // Valores pré-definidos.
 #define TOTAL_ALUNOS 30
 #define TOTAL_FALTAS 36
 // Contador de matrículas a nível global.
 int count = 0;
+FILE *fptr;
 
 // Lista de funções pré-definidas.
 void exibeMenu();
@@ -31,6 +33,7 @@ void removerAluno();
 typedef struct {
     int alunos[TOTAL_ALUNOS];
     int faltas[TOTAL_FALTAS];
+    int codTurma;
     double notas[TOTAL_ALUNOS][4];
     char nome[][TOTAL_ALUNOS];
 } info_pessoa;
@@ -100,12 +103,14 @@ void cadastraAluno() {
     int faltas;
     double notas;
     int operacao;
+    int codDaTurma;
 
     do {
         printf("\nDeseja adicionar uma matrícula?(1 - Sim / 0 - Não): ");
         scanf("%d", &operacao);
 
         if (operacao == 0) {
+            fclose(fptr);
             break;
         } else {
             printf("Digite sua matrícula(Ex: 20220XX): ");
@@ -128,6 +133,10 @@ void cadastraAluno() {
                 } else {
                     // Armazena a matrícula.
                     info.alunos[i] = matricula;
+                    // Passamos o código da turma.
+                    printf("Digite o código da turma(Ex: 334): ");
+                    scanf("%i", &codDaTurma);
+                    info.codTurma = codDaTurma;
                     // Solicita o nome do aluno.
                     printf("Digite o seu nome completo: ");
                     // Limpa o buffer do teclado.
@@ -136,6 +145,8 @@ void cadastraAluno() {
                     fgets(info.nome[i], 100, stdin);
                     // Limpa o buffer do teclado.
                     setbuf(stdin, NULL);
+
+
 
                     // Solicita as faltas e as armazena.
                     printf("Digite a quantidade de faltas: ");
@@ -148,11 +159,30 @@ void cadastraAluno() {
                         scanf("%lf", &notas);
                         info.notas[i][j] = notas;
                     }
+
+
+                    fptr = fopen("alunos.txt", "a");
+                    if (fptr == NULL) {
+                        printf("Error!\n");
+                        exit(1);
+                    }
+
+                    fprintf(fptr, "%i\n", info.alunos[i]);
+                    fprintf(fptr, "%i\n", info.codTurma);
+                    fprintf(fptr, "%s", info.nome[i]);
+                    fprintf(fptr, "%i\n", info.faltas[i]);
+
+                    for (int j = 0; j < 4; ++j) {
+                        fprintf(fptr, "%.1lf\n", info.notas[i][j]);
+                    }
+
+
                     count++;
                     break;
                 }
             }
         }
+
 
     } while (operacao != 0);
 }
@@ -186,6 +216,9 @@ void removerAluno() {
                     strcpy(info.nome[i], "\0");
                     // Define o valor das faltas como nulo(vazio)
                     info.faltas[i] = '\0';
+                    // Define o código da turma como sendo nulo(vazio).
+                    info.codTurma = '\0';
+
                     // Define o valor das notas como nulo(vazio)
                     for (int j = 0; j < 4; ++j) {
                         info.notas[i][j] = '\0';
@@ -300,6 +333,7 @@ void listaAlunos() {
         // Analisa para ver se o vetor está vazio.
         if (info.alunos[i] != '\0') {
             printf("\nMatrícula: %d\n", info.alunos[i]);
+            printf("Código da turma: %i\n", info.codTurma);
             printf("Nome: %s", info.nome[i]);
             printf("Faltas: %d\n", info.faltas[i]);
 
@@ -336,6 +370,7 @@ void listarAprovados() {
             // Condição de aprovação.
             if (media >= 7 && faltas >= 60) {
                 printf("\nMatrícula: %d\n", info.alunos[i]);
+                printf("Código da turma: %i\n", info.codTurma);
                 printf("Nome: %s", info.nome[i]);
                 printf("Faltas: %d\n", info.faltas[i]);
                 printf("Frequência: %.1lf%\n", faltas);
@@ -363,6 +398,7 @@ void listarReprovadosMedia() {
             // Condição de reprovação.
             if (media < 7) {
                 printf("\nMatrícula: %d\n", info.alunos[i]);
+                printf("Código da turma: %i\n", info.codTurma);
                 printf("Nome: %s", info.nome[i]);
                 printf("Média: %.1lf\n", media);
                 printf("Situação: Reprovado por média\n");
@@ -385,6 +421,7 @@ void listarReprovadosFalta() {
             // Condição de reprovação.
             if (faltas < 60) {
                 printf("\nMatrícula: %d\n", info.alunos[i]);
+                printf("Código da turma: %i\n", info.codTurma);
                 printf("Nome: %s", info.nome[i]);
                 printf("Frequência: %.1lf%\n", faltas);
                 printf("Situação: Reprovado por faltas\n");

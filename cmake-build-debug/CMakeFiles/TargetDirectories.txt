@@ -1,0 +1,3 @@
+C:/Users/conta/OneDrive/Documentos/Trabalho-PI/cmake-build-debug/CMakeFiles/Trabalho_PI.dir
+C:/Users/conta/OneDrive/Documentos/Trabalho-PI/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/conta/OneDrive/Documentos/Trabalho-PI/cmake-build-debug/CMakeFiles/rebuild_cache.dir
