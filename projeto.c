@@ -1,5 +1,4 @@
 // Aluno: DOUGLAS CUNHA DE JESUS
-// Matrícula: 202200059722
 
 #include "stdio.h"
 #include "string.h"
