@@ -73,7 +73,13 @@ int main() {
                     printf("Matrícula já cadastrada!\n");
                     flag = 1;
                     break;
-                } 
+                }
+
+                if (count >= TOTAL_ALUNOS) {
+                    printf("Número máximo de matrículas atingido!\n");
+                    flag = 1;
+                    break;
+                }
             }
             // Caso a matrícula não exista, o programa continua.
             if (flag == 0) {
@@ -153,10 +159,6 @@ void cadastraAluno(int matricula, int faltas, double notas[], int codDaTurma) {
     if (operacao == 0) {
         printf("\nOperação cancelada!\n");
     } else {
-        if (count >= TOTAL_ALUNOS) {
-            printf("Número máximo de matrículas atingido!\n");
-        }
-
         for (int i = 0; i < TOTAL_ALUNOS; ++i) {
             
             if (info.alunos[i] != '\0') {
