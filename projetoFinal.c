@@ -48,8 +48,7 @@ int main() {
     int faltasAluno;
     int codTurma;
     int flag = 0;
-    // 120 notas = 30 alunos.
-    double notasAluno[120];
+    double notasAluno[4];
 
     do
     {
@@ -129,8 +128,7 @@ int main() {
                 break;
       }
     } while (operacao != 0);
-    
-    
+
     return 0;
 }
 
@@ -344,6 +342,7 @@ void listarReprovadosMedia() {
                 printf("Nome: %s", info.nome[i]);
                 printf("Média: %.1lf\n", media);
                 printf("Situação: Reprovado por média\n");
+                media = 0;
             }
         }
     }
