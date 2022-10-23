@@ -186,7 +186,7 @@ void cadastraAluno(int matricula, int faltas, double notas[], int codDaTurma) {
                 }
 
                 
-                fptr = fopen("alunos.txt", "a");
+                fptr = fopen("../alunos.txt", "a");
                 if (fptr == NULL) {
                     printf("Error!\n");
                     exit(1);

@@ -4,15 +4,15 @@ Nome: DOUGLAS C JESUS
 Faltas: 3
 Nota(s): 9.4
 Nota(s): 10.0
-Nota(s): 8.0
 Nota(s): 8.5
+Nota(s): 6.7
 
 Matricula: 2022002
 Código da turma: 943
 Nome: ALUNO 2
-Faltas: 13
+Faltas: 21
 Nota(s): 9.0
-Nota(s): 10.0
-Nota(s): 7.0
+Nota(s): 1.0
 Nota(s): 5.0
+Nota(s): 6.0
 
