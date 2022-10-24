@@ -2,17 +2,17 @@ Matricula: 2022001
 Código da turma: 334
 Nome: DOUGLAS C JESUS
 Faltas: 3
-Nota(s): 9.0
-Nota(s): 8.4
 Nota(s): 10.0
-Nota(s): 9.8
+Nota(s): 9.0
+Nota(s): 8.0
+Nota(s): 8.5
 
 Matricula: 2022002
-Código da turma: 978
+Código da turma: 987
 Nome: ALUNO 2
 Faltas: 13
-Nota(s): 5.0
-Nota(s): 6.0
+Nota(s): 8.0
+Nota(s): 0.0
 Nota(s): 10.0
-Nota(s): 9.0
+Nota(s): 10.0
 

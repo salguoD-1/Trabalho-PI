@@ -1,9 +1,11 @@
+// ALUNO: DOUGLAS CUNHA DE JESUS
+
 #include <stdio.h>
 #include "string.h"
 #include "stdlib.h"
 
 // Valores pré-definidos.
-#define TOTAL_ALUNOS 30
+#define TOTAL_ALUNOS 3
 #define TOTAL_FALTAS 36
 
 // Contador de matrículas a nível global.
@@ -188,7 +190,7 @@ void cadastraAluno(int matricula, int faltas, double notas[], int codDaTurma) {
                 }
 
                 
-                fptr = fopen("../alunos.txt", "a");
+                fptr = fopen("alunos.txt", "a");
                 if (fptr == NULL) {
                     printf("Error!\n");
                     exit(1);
